@@ -6,25 +6,20 @@
 //
 
 import Combine
+import Foundation
 
 final class HomeViewModel: ObservableObject {
     
-    @Published private(set) var names: [String]
+    @Published private(set) var uiModel: [WritingDetailsUIModel]
     @Published private(set) var errorMessage: String
     
     private let fileReader: FileReader
-    private var CSVFileData: CSVDataModel?
     
     init(fileReader: FileReader = FileReader()) {
         self.fileReader = fileReader
-        CSVFileData = nil
-        names = []
+        uiModel = []
         errorMessage = ""
         fetchCSVData()
-    }
-    
-    func onTapName(index: Int) {
-        
     }
     
     private func fetchCSVData() {
@@ -41,11 +36,18 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func processCSVFile(data: CSVDataModel) {
-        CSVFileData = data
-        names = []
+        uiModel = []
         for row in data.rows {
-            if let value = row["poemName"] {
-                names.append(value)
+            if let name = row["poemName"], let content = row["poemContent"] {
+                let charactersToRemove = CharacterSet(charactersIn: "\(name)")
+                let dataModel = WritingDetailsUIModel(
+                    contentName: name,
+                    // Removing duplicate name
+                    content: content.trimmingCharacters(in: charactersToRemove),
+                    writerName: row["writerName"] ?? "",
+                    language: row["language"] ?? ""
+                )
+                uiModel.append(dataModel)
             }
         }
     }

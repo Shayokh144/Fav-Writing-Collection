@@ -14,29 +14,28 @@ struct HomeScreen: View {
     private var nameListView: some View {
         ScrollView {
             VStack {
-                ForEach(viewModel.names.indices, id: \.self) { index in
-                    Button(
-                        action: {
-                            
-                        },
-                        label: {
-                            Text(viewModel.names[index])
-                                .foregroundStyle(Color.black)
-                                .frame(maxWidth: .infinity)
-                                .padding(8.0)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(10.0)
-                        }
-                    )
-                    .frame(maxWidth: .infinity)
-                    .padding(.bottom)
+                ForEach(viewModel.uiModel.indices, id: \.self) { index in
+                    NavigationLink(
+                        destination: WritingDetailsScreen(
+                            onTapBack: {},
+                            uiModel: viewModel.uiModel[index]
+                        )
+                    ) {
+                        Text(viewModel.uiModel[index].contentName)
+                            .foregroundStyle(Color.purple)
+                            .frame(maxWidth: .infinity)
+                            .padding(8.0)
+                            .background(Color.purple.opacity(0.1))
+                            .cornerRadius(10.0)
+                            .padding(.bottom)
+                    }
                 }
             }
         }
     }
     
     var body: some View {
-        VStack {
+        NavigationStack {
             nameListView
                 .padding()
         }

@@ -12,20 +12,31 @@ struct WritingDetailsScreen: View {
     private let onTapBack: () -> Void
     private let uiModel: WritingDetailsUIModel
     
+//    private var contentArray: [String] {
+//        let dataArray = uiModel.content.components(separatedBy: "\n")
+//        // Filter out empty strings
+//        let filteredArray = dataArray.filter { !$0.isEmpty }
+//        return filteredArray
+//    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(uiModel.contentName)
+                .padding(.bottom, 4.0)
+            Text(uiModel.writerName)
+                .padding(.bottom, 8.0)
+            ScrollView {
+//                ForEach(contentArray.indices, id: \.self) { index in
+//                    Text(contentArray[index])
+//                        .padding(.bottom, 8.0)
+//                }
+                Text(uiModel.content)
+            }
+        }
     }
     
     init(onTapBack: @escaping () -> Void, uiModel: WritingDetailsUIModel) {
         self.onTapBack = onTapBack
         self.uiModel = uiModel
     }
-}
-
-
-struct WritingDetailsUIModel {
-    
-    let contentName: String
-    let content: String
-    let writerName: String
 }
