@@ -7,18 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040675332BEB6B7B009C865A /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040675322BEB6B7B009C865A /* FileReader.swift */; };
+		040675362BEB6CA1009C865A /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 040675352BEB6CA1009C865A /* SwiftCSV */; };
+		040675382BEB73D7009C865A /* CSVDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040675372BEB73D7009C865A /* CSVDataModel.swift */; };
+		0406753B2BEB78FF009C865A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0406753A2BEB78FF009C865A /* HomeViewModel.swift */; };
 		0499E2402BEA759800464450 /* FavWritingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499E23F2BEA759800464450 /* FavWritingsApp.swift */; };
-		0499E2422BEA759800464450 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499E2412BEA759800464450 /* ContentView.swift */; };
+		0499E2422BEA759800464450 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499E2412BEA759800464450 /* HomeScreen.swift */; };
 		0499E2442BEA759800464450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0499E2432BEA759800464450 /* Assets.xcassets */; };
 		0499E2472BEA759800464450 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0499E2462BEA759800464450 /* Preview Assets.xcassets */; };
+		0499E24F2BEA77A900464450 /* JibananandaDasPoem.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0499E24E2BEA77A900464450 /* JibananandaDasPoem.csv */; };
+		0499E2522BEA77EC00464450 /* WritingDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499E2512BEA77EC00464450 /* WritingDetailsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040675322BEB6B7B009C865A /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
+		040675372BEB73D7009C865A /* CSVDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDataModel.swift; sourceTree = "<group>"; };
+		0406753A2BEB78FF009C865A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0499E23C2BEA759800464450 /* FavWritings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FavWritings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0499E23F2BEA759800464450 /* FavWritingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavWritingsApp.swift; sourceTree = "<group>"; };
-		0499E2412BEA759800464450 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0499E2412BEA759800464450 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		0499E2432BEA759800464450 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0499E2462BEA759800464450 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0499E24E2BEA77A900464450 /* JibananandaDasPoem.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JibananandaDasPoem.csv; sourceTree = "<group>"; };
+		0499E2512BEA77EC00464450 /* WritingDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingDetailsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,12 +37,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040675362BEB6CA1009C865A /* SwiftCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040675312BEB6B67009C865A /* FileReader */ = {
+			isa = PBXGroup;
+			children = (
+				040675322BEB6B7B009C865A /* FileReader.swift */,
+				040675372BEB73D7009C865A /* CSVDataModel.swift */,
+			);
+			path = FileReader;
+			sourceTree = "<group>";
+		};
+		040675392BEB78E7009C865A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0499E2412BEA759800464450 /* HomeScreen.swift */,
+				0406753A2BEB78FF009C865A /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		0499E2332BEA759800464450 = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +81,11 @@
 		0499E23E2BEA759800464450 /* FavWritings */ = {
 			isa = PBXGroup;
 			children = (
+				040675392BEB78E7009C865A /* Home */,
+				040675312BEB6B67009C865A /* FileReader */,
+				0499E2502BEA77BD00464450 /* Details */,
 				0499E24D2BEA75A500464450 /* Resource */,
 				0499E23F2BEA759800464450 /* FavWritingsApp.swift */,
-				0499E2412BEA759800464450 /* ContentView.swift */,
 				0499E2432BEA759800464450 /* Assets.xcassets */,
 				0499E2452BEA759800464450 /* Preview Content */,
 			);
@@ -71,8 +103,17 @@
 		0499E24D2BEA75A500464450 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0499E24E2BEA77A900464450 /* JibananandaDasPoem.csv */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		0499E2502BEA77BD00464450 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				0499E2512BEA77EC00464450 /* WritingDetailsScreen.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +132,9 @@
 			dependencies = (
 			);
 			name = FavWritings;
+			packageProductDependencies = (
+				040675352BEB6CA1009C865A /* SwiftCSV */,
+			);
 			productName = FavWritings;
 			productReference = 0499E23C2BEA759800464450 /* FavWritings.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +163,9 @@
 				Base,
 			);
 			mainGroup = 0499E2332BEA759800464450;
+			packageReferences = (
+				040675342BEB6CA1009C865A /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+			);
 			productRefGroup = 0499E23D2BEA759800464450 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0499E2472BEA759800464450 /* Preview Assets.xcassets in Resources */,
+				0499E24F2BEA77A900464450 /* JibananandaDasPoem.csv in Resources */,
 				0499E2442BEA759800464450 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +193,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0499E2422BEA759800464450 /* ContentView.swift in Sources */,
+				040675382BEB73D7009C865A /* CSVDataModel.swift in Sources */,
+				0406753B2BEB78FF009C865A /* HomeViewModel.swift in Sources */,
+				0499E2422BEA759800464450 /* HomeScreen.swift in Sources */,
+				0499E2522BEA77EC00464450 /* WritingDetailsScreen.swift in Sources */,
+				040675332BEB6B7B009C865A /* FileReader.swift in Sources */,
 				0499E2402BEA759800464450 /* FavWritingsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +412,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		040675342BEB6CA1009C865A /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		040675352BEB6CA1009C865A /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 040675342BEB6CA1009C865A /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0499E2342BEA759800464450 /* Project object */;
 }
