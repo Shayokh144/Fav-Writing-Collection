@@ -11,32 +11,74 @@ struct WritingDetailsScreen: View {
     
     private let onTapBack: () -> Void
     private let uiModel: WritingDetailsUIModel
-    
-//    private var contentArray: [String] {
-//        let dataArray = uiModel.content.components(separatedBy: "\n")
-//        // Filter out empty strings
-//        let filteredArray = dataArray.filter { !$0.isEmpty }
-//        return filteredArray
-//    }
+    private let contentArray: [String]
+    private let maxPadding: CGFloat = 64.0
+    @State private var isRaw = false
     
     var body: some View {
         VStack {
             Text(uiModel.contentName)
+                .font(.system(size: 18.0, weight: .bold))
                 .padding(.bottom, 4.0)
             Text(uiModel.writerName)
+                .font(.system(size: 14.0, weight: .bold))
                 .padding(.bottom, 8.0)
             ScrollView {
-//                ForEach(contentArray.indices, id: \.self) { index in
-//                    Text(contentArray[index])
-//                        .padding(.bottom, 8.0)
-//                }
-                Text(uiModel.content)
+                if isRaw {
+                    Text(uiModel.content)
+                } else {
+                    VStack(alignment: .leading) {
+                        ForEach(contentArray.indices, id: \.self) { index in
+                            if !contentArray[index].isEmpty {
+                                Text(contentArray[index])
+                                    .padding(.bottom, getPadding(for: index))
+                            }
+                        }
+                    }
+                }
             }
+            Spacer()
+            Button(
+                action: {
+                    isRaw.toggle()
+                },
+                label: {
+                    Text(isRaw ? "Furnished View" : "Raw View")
+                        .foregroundStyle(Color.black)
+                        .padding(8.0)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(10.0)
+                }
+            )
+            .buttonStyle(.plain)
+            .padding(.top)
         }
     }
     
     init(onTapBack: @escaping () -> Void, uiModel: WritingDetailsUIModel) {
         self.onTapBack = onTapBack
         self.uiModel = uiModel
+        contentArray = uiModel.content.components(separatedBy: "\n")
+    }
+    
+    private func getPadding(for index: Int) -> CGFloat {
+        if index >= contentArray.count - 1 {
+            // last element
+            return 32.0
+        }
+        var padding: CGFloat = 0.0
+        var startIndex = index + 1
+        let endIndex = contentArray.count - 1
+        var multiplayer = 1.0
+        while startIndex <= endIndex {
+            if !contentArray[startIndex].isEmpty {
+                break
+            }
+            padding += (4.0 * multiplayer)
+            multiplayer += 1
+            startIndex += 1
+        }
+        return min(padding, maxPadding)
     }
 }
