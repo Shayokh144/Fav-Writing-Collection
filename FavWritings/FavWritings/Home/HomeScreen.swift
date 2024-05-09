@@ -10,18 +10,29 @@ import SwiftUI
 struct HomeScreen: View {
     
     @StateObject private var viewModel: HomeViewModel
+    @State private var searchNameText = ""
+    
+    var searchNameResults: [WritingDetailsUIModel] {
+        if searchNameText.isEmpty {
+            return viewModel.uiModel
+        } else {
+            return viewModel.uiModel.filter {
+                $0.contentName.lowercased().contains(searchNameText.lowercased())
+            }
+        }
+    }
     
     private var nameListView: some View {
         ScrollView {
             VStack {
-                ForEach(viewModel.uiModel.indices, id: \.self) { index in
+                ForEach(searchNameResults.indices, id: \.self) { index in
                     NavigationLink(
                         destination: WritingDetailsScreen(
                             onTapBack: {},
-                            uiModel: viewModel.uiModel[index]
+                            uiModel: searchNameResults[index]
                         )
                     ) {
-                        Text(viewModel.uiModel[index].contentName)
+                        Text(searchNameResults[index].contentName)
                             .foregroundStyle(Color.purple)
                             .frame(maxWidth: .infinity)
                             .padding(8.0)
@@ -39,6 +50,11 @@ struct HomeScreen: View {
             nameListView
                 .padding()
         }
+        .searchable(
+            text: $searchNameText,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "write here"
+        )
         .padding()
     }
     
