@@ -24,10 +24,10 @@ struct WritingDetailsScreen: View {
                 .font(.system(size: 14.0, weight: .bold))
                 .padding(.bottom, 8.0)
             ScrollView {
-                if isRaw {
-                    Text(uiModel.content)
-                } else {
-                    VStack(alignment: .leading) {
+                VStack(alignment: .leading) {
+                    if isRaw {
+                        Text(uiModel.content)
+                    } else {
                         ForEach(contentArray.indices, id: \.self) { index in
                             if !contentArray[index].isEmpty {
                                 Text(contentArray[index])
@@ -36,6 +36,7 @@ struct WritingDetailsScreen: View {
                         }
                     }
                 }
+                .animation(.linear, value: isRaw)
             }
             Spacer()
             Button(

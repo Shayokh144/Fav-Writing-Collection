@@ -45,16 +45,23 @@ struct HomeScreen: View {
         }
     }
     
+    private var searchTextField: some View {
+        TextField("Write name here to search", text: $searchNameText)
+    }
+    
     var body: some View {
         NavigationStack {
-            nameListView
-                .padding()
+            VStack {
+                Text("Writings")
+                    .font(.headline)
+                    .padding(.bottom)
+                searchTextField
+                    .foregroundStyle(.purple)
+                    .textFieldStyle(.roundedBorder)
+                nameListView
+                    .padding(.vertical)
+            }
         }
-        .searchable(
-            text: $searchNameText,
-            placement: .navigationBarDrawer(displayMode: .always),
-            prompt: "write here"
-        )
         .padding()
     }
     
