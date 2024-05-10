@@ -14,6 +14,43 @@ struct WritingDetailsScreen: View {
     private let contentArray: [String]
     private let maxPadding: CGFloat = 64.0
     @State private var isRaw = false
+    @State private var isLoading = true
+    
+    private var content: some View {
+        VStack {
+            ScrollView {
+                if isRaw {
+                    Text(uiModel.content)
+                } else {
+                    VStack(alignment: .leading) {
+                        ForEach(contentArray.indices, id: \.self) { index in
+                            if !contentArray[index].isEmpty {
+                                Text(contentArray[index])
+                                    .padding(.bottom, getPadding(for: index))
+                            }
+                        }
+                    }
+                }
+            }
+            Spacer()
+            Button(
+                action: {
+                    isRaw.toggle()
+                },
+                label: {
+                    Text(isRaw ? "Furnished View" : "Raw View")
+                        .foregroundStyle(Color.white)
+                        .font(.system(size: 14.0, weight: .bold))
+                        .padding(8.0)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(10.0)
+                }
+            )
+            .buttonStyle(.plain)
+            .padding(.top)
+        }
+    }
     
     var body: some View {
         VStack {
@@ -23,37 +60,17 @@ struct WritingDetailsScreen: View {
             Text(uiModel.writerName)
                 .font(.system(size: 14.0, weight: .bold))
                 .padding(.bottom, 8.0)
-            ScrollView {
-                VStack(alignment: .leading) {
-                    if isRaw {
-                        Text(uiModel.content)
-                    } else {
-                        ForEach(contentArray.indices, id: \.self) { index in
-                            if !contentArray[index].isEmpty {
-                                Text(contentArray[index])
-                                    .padding(.bottom, getPadding(for: index))
-                            }
-                        }
-                    }
-                }
-                .animation(.linear, value: isRaw)
-            }
             Spacer()
-            Button(
-                action: {
-                    isRaw.toggle()
-                },
-                label: {
-                    Text(isRaw ? "Furnished View" : "Raw View")
-                        .foregroundStyle(Color.black)
-                        .padding(8.0)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(10.0)
-                }
-            )
-            .buttonStyle(.plain)
-            .padding(.top)
+            if isLoading {
+                ProgressView()
+                Spacer()
+            } else {
+                content
+            }
+        }
+        .animation(.linear, value: isRaw)
+        .task {
+            await showLoading()
         }
     }
     
@@ -81,5 +98,10 @@ struct WritingDetailsScreen: View {
             startIndex += 1
         }
         return min(padding, maxPadding)
+    }
+    
+    private func showLoading() async {
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        isLoading = false
     }
 }
