@@ -30,6 +30,8 @@ struct AppCoordinator: View {
                     )
                 case let .writingsDetails(uiModel):
                     WritingDetailsScreen(onTapBack: coordinator.goBack, uiModel: uiModel)
+                case let .wordSearch(viewModel):
+                    WordSearchScreen(viewModel: viewModel)
             }
         }
     }

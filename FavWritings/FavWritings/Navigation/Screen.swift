@@ -12,5 +12,6 @@ enum Screen {
     case tabContainer
     case writingsList(WritingsListViewModel)
     case writingsDetails(WritingDetailsUIModel)
+    case wordSearch(WordSearchViewModel)
 }
 
