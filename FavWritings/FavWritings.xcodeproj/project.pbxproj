@@ -18,6 +18,11 @@
 		0499E2472BEA759800464450 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0499E2462BEA759800464450 /* Preview Assets.xcassets */; };
 		0499E24F2BEA77A900464450 /* JibananandaDasPoem.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0499E24E2BEA77A900464450 /* JibananandaDasPoem.csv */; };
 		0499E2522BEA77EC00464450 /* WritingDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499E2512BEA77EC00464450 /* WritingDetailsScreen.swift */; };
+		04A2C7CA2BF24684003525F7 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 04A2C7C92BF24684003525F7 /* FlowStacks */; };
+		04A2C7CD2BF246B6003525F7 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2C7CC2BF246B6003525F7 /* Screen.swift */; };
+		04A2C7CF2BF24710003525F7 /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2C7CE2BF24710003525F7 /* AppCoordinatorViewModel.swift */; };
+		04A2C7D32BF24820003525F7 /* TabContainerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2C7D22BF24820003525F7 /* TabContainerScreen.swift */; };
+		04A2C7D52BF2484C003525F7 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2C7D42BF2484C003525F7 /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,10 @@
 		0499E2462BEA759800464450 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0499E24E2BEA77A900464450 /* JibananandaDasPoem.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JibananandaDasPoem.csv; sourceTree = "<group>"; };
 		0499E2512BEA77EC00464450 /* WritingDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingDetailsScreen.swift; sourceTree = "<group>"; };
+		04A2C7CC2BF246B6003525F7 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		04A2C7CE2BF24710003525F7 /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		04A2C7D22BF24820003525F7 /* TabContainerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabContainerScreen.swift; sourceTree = "<group>"; };
+		04A2C7D42BF2484C003525F7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040675362BEB6CA1009C865A /* SwiftCSV in Frameworks */,
+				04A2C7CA2BF24684003525F7 /* FlowStacks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +101,8 @@
 		0499E23E2BEA759800464450 /* FavWritings */ = {
 			isa = PBXGroup;
 			children = (
+				04A2C7D12BF2480E003525F7 /* TabContainer */,
+				04A2C7CB2BF24696003525F7 /* Navigation */,
 				0406753C2BEB7F5A009C865A /* DataModel */,
 				040675392BEB78E7009C865A /* Writings */,
 				040675312BEB6B67009C865A /* FileReader */,
@@ -127,6 +139,24 @@
 			path = WritingsDetails;
 			sourceTree = "<group>";
 		};
+		04A2C7CB2BF24696003525F7 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				04A2C7CC2BF246B6003525F7 /* Screen.swift */,
+				04A2C7CE2BF24710003525F7 /* AppCoordinatorViewModel.swift */,
+				04A2C7D42BF2484C003525F7 /* AppCoordinator.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		04A2C7D12BF2480E003525F7 /* TabContainer */ = {
+			isa = PBXGroup;
+			children = (
+				04A2C7D22BF24820003525F7 /* TabContainerScreen.swift */,
+			);
+			path = TabContainer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +175,7 @@
 			name = FavWritings;
 			packageProductDependencies = (
 				040675352BEB6CA1009C865A /* SwiftCSV */,
+				04A2C7C92BF24684003525F7 /* FlowStacks */,
 			);
 			productName = FavWritings;
 			productReference = 0499E23C2BEA759800464450 /* FavWritings.app */;
@@ -176,6 +207,7 @@
 			mainGroup = 0499E2332BEA759800464450;
 			packageReferences = (
 				040675342BEB6CA1009C865A /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+				04A2C7C82BF24684003525F7 /* XCRemoteSwiftPackageReference "FlowStacks" */,
 			);
 			productRefGroup = 0499E23D2BEA759800464450 /* Products */;
 			projectDirPath = "";
@@ -204,13 +236,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A2C7D52BF2484C003525F7 /* AppCoordinator.swift in Sources */,
+				04A2C7CF2BF24710003525F7 /* AppCoordinatorViewModel.swift in Sources */,
 				040675382BEB73D7009C865A /* CSVDataModel.swift in Sources */,
 				0406753B2BEB78FF009C865A /* WritingsListViewModel.swift in Sources */,
+				04A2C7D32BF24820003525F7 /* TabContainerScreen.swift in Sources */,
 				0499E2422BEA759800464450 /* WritingsListScreen.swift in Sources */,
 				0499E2522BEA77EC00464450 /* WritingDetailsScreen.swift in Sources */,
 				0406753E2BEB801C009C865A /* WritingDetailsUIModel.swift in Sources */,
 				040675332BEB6B7B009C865A /* FileReader.swift in Sources */,
 				0499E2402BEA759800464450 /* FavWritingsApp.swift in Sources */,
+				04A2C7CD2BF246B6003525F7 /* Screen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +470,14 @@
 				minimumVersion = 0.9.1;
 			};
 		};
+		04A2C7C82BF24684003525F7 /* XCRemoteSwiftPackageReference "FlowStacks" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnpatrickmorgan/FlowStacks";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -441,6 +485,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 040675342BEB6CA1009C865A /* XCRemoteSwiftPackageReference "SwiftCSV" */;
 			productName = SwiftCSV;
+		};
+		04A2C7C92BF24684003525F7 /* FlowStacks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04A2C7C82BF24684003525F7 /* XCRemoteSwiftPackageReference "FlowStacks" */;
+			productName = FlowStacks;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

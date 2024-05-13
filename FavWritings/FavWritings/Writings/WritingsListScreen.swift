@@ -11,6 +11,7 @@ struct WritingsListScreen: View {
     
     @StateObject private var viewModel: WritingsListViewModel
     @State private var searchNameText = ""
+    private let onTapWritingName: (WritingDetailsUIModel) -> Void
     
     var searchNameResults: [WritingDetailsUIModel] {
         if searchNameText.isEmpty {
@@ -26,20 +27,20 @@ struct WritingsListScreen: View {
         ScrollView {
             VStack {
                 ForEach(searchNameResults.indices, id: \.self) { index in
-                    NavigationLink(
-                        destination: WritingDetailsScreen(
-                            onTapBack: {},
-                            uiModel: searchNameResults[index]
-                        )
-                    ) {
-                        Text(searchNameResults[index].contentName)
-                            .foregroundStyle(Color.purple)
-                            .frame(maxWidth: .infinity)
-                            .padding(8.0)
-                            .background(Color.purple.opacity(0.1))
-                            .cornerRadius(10.0)
-                            .padding(.bottom)
-                    }
+                    Button(
+                        action: {
+                            onTapWritingName(searchNameResults[index])
+                        },
+                        label: {
+                            Text(searchNameResults[index].contentName)
+                                .foregroundStyle(Color.purple)
+                                .frame(maxWidth: .infinity)
+                                .padding(8.0)
+                                .background(Color.purple.opacity(0.1))
+                                .cornerRadius(10.0)
+                                .padding(.bottom)
+                        }
+                    )
                 }
             }
         }
@@ -50,22 +51,24 @@ struct WritingsListScreen: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Writings")
-                    .font(.headline)
-                    .padding(.bottom)
-                searchTextField
-                    .foregroundStyle(.purple)
-                    .textFieldStyle(.roundedBorder)
-                nameListView
-                    .padding(.vertical)
-            }
+        VStack {
+            Text("Writings")
+                .font(.headline)
+                .padding(.bottom)
+            searchTextField
+                .foregroundStyle(.purple)
+                .textFieldStyle(.roundedBorder)
+            nameListView
+                .padding(.vertical)
         }
-        .padding()
+        .padding(.horizontal)
     }
     
-    init(viewModel: WritingsListViewModel) {
+    init(
+        viewModel: WritingsListViewModel,
+        onTapWritingName: @escaping (WritingDetailsUIModel) -> Void
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.onTapWritingName = onTapWritingName
     }
 }

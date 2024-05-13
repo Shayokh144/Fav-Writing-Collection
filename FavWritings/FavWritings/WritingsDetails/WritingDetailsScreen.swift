@@ -50,6 +50,7 @@ struct WritingDetailsScreen: View {
             .buttonStyle(.plain)
             .padding(.top)
         }
+        .padding(.horizontal)
     }
     
     var body: some View {
