@@ -11,7 +11,7 @@ import SwiftUI
 struct FavWritingsApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeScreen(viewModel: HomeViewModel())
+            WritingsListScreen(viewModel: WritingsListViewModel())
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  HomeScreen.swift
+//  WritingsListScreen.swift
 //  FavWritings
 //
 //  Created by Taher's nimble macbook on 7/5/24.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct HomeScreen: View {
+struct WritingsListScreen: View {
     
-    @StateObject private var viewModel: HomeViewModel
+    @StateObject private var viewModel: WritingsListViewModel
     @State private var searchNameText = ""
     
     var searchNameResults: [WritingDetailsUIModel] {
@@ -65,7 +65,7 @@ struct HomeScreen: View {
         .padding()
     }
     
-    init(viewModel: HomeViewModel) {
+    init(viewModel: WritingsListViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 }

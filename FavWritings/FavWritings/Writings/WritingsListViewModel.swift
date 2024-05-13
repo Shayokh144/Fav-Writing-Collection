@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  WritingsListViewModel.swift
 //  FavWritings
 //
 //  Created by Taher's nimble macbook on 8/5/24.
@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-final class HomeViewModel: ObservableObject {
+final class WritingsListViewModel: ObservableObject {
     
     @Published private(set) var uiModel: [WritingDetailsUIModel]
     @Published private(set) var errorMessage: String
