@@ -12,6 +12,7 @@
 		040675382BEB73D7009C865A /* CSVDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040675372BEB73D7009C865A /* CSVDataModel.swift */; };
 		0406753B2BEB78FF009C865A /* WritingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0406753A2BEB78FF009C865A /* WritingsListViewModel.swift */; };
 		0406753E2BEB801C009C865A /* WritingDetailsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0406753D2BEB801C009C865A /* WritingDetailsUIModel.swift */; };
+		04253DA22BF327CD00F132BB /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04253DA12BF327CD00F132BB /* SplashScreen.swift */; };
 		0499E2402BEA759800464450 /* FavWritingsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499E23F2BEA759800464450 /* FavWritingsApp.swift */; };
 		0499E2422BEA759800464450 /* WritingsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499E2412BEA759800464450 /* WritingsListScreen.swift */; };
 		0499E2442BEA759800464450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0499E2432BEA759800464450 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		040675372BEB73D7009C865A /* CSVDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDataModel.swift; sourceTree = "<group>"; };
 		0406753A2BEB78FF009C865A /* WritingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingsListViewModel.swift; sourceTree = "<group>"; };
 		0406753D2BEB801C009C865A /* WritingDetailsUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingDetailsUIModel.swift; sourceTree = "<group>"; };
+		04253DA12BF327CD00F132BB /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		0499E23C2BEA759800464450 /* FavWritings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FavWritings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0499E23F2BEA759800464450 /* FavWritingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavWritingsApp.swift; sourceTree = "<group>"; };
 		0499E2412BEA759800464450 /* WritingsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingsListScreen.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 		04A2C7D92BF2505E003525F7 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		04A2C7DC2BF2508D003525F7 /* WordSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearchViewModel.swift; sourceTree = "<group>"; };
 		04A2C7DE2BF250B0003525F7 /* WordSearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSearchScreen.swift; sourceTree = "<group>"; };
+		04A2C7E02BF323E5003525F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,14 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		04253DA02BF327BE00F132BB /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				04253DA12BF327CD00F132BB /* SplashScreen.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		0499E2332BEA759800464450 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +120,8 @@
 		0499E23E2BEA759800464450 /* FavWritings */ = {
 			isa = PBXGroup;
 			children = (
+				04253DA02BF327BE00F132BB /* Splash */,
+				04A2C7E02BF323E5003525F7 /* Info.plist */,
 				04A2C7DB2BF25080003525F7 /* WordSearch */,
 				04A2C7D82BF25043003525F7 /* WebView */,
 				04A2C7D12BF2480E003525F7 /* TabContainer */,
@@ -265,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04253DA22BF327CD00F132BB /* SplashScreen.swift in Sources */,
 				04A2C7D52BF2484C003525F7 /* AppCoordinator.swift in Sources */,
 				04A2C7CF2BF24710003525F7 /* AppCoordinatorViewModel.swift in Sources */,
 				040675382BEB73D7009C865A /* CSVDataModel.swift in Sources */,
@@ -415,9 +429,9 @@
 				DEVELOPMENT_TEAM = 8PSF52429N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FavWritings/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
@@ -448,9 +462,9 @@
 				DEVELOPMENT_TEAM = 8PSF52429N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FavWritings/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;

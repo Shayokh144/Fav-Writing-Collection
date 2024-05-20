@@ -32,6 +32,8 @@ struct AppCoordinator: View {
                     WritingDetailsScreen(onTapBack: coordinator.goBack, uiModel: uiModel)
                 case let .wordSearch(viewModel):
                     WordSearchScreen(viewModel: viewModel)
+                case .splash:
+                    SplashScreen(onFinishSplashAnimation: coordinator.setTabBarAsRootScreen)
             }
         }
     }

@@ -13,5 +13,6 @@ enum Screen {
     case writingsList(WritingsListViewModel)
     case writingsDetails(WritingDetailsUIModel)
     case wordSearch(WordSearchViewModel)
+    case splash
 }
 

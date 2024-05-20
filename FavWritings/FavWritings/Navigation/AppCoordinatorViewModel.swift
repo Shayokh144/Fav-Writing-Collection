@@ -14,7 +14,7 @@ final class AppCoordinatorViewModel: ObservableObject {
     @Published var routes: Routes<Screen>
 
     init() {
-        self.routes = [.root(.tabContainer, embedInNavigationView: true)]
+        self.routes = [.root(.splash, embedInNavigationView: true)]
     }
 
     func goBack() {
@@ -23,6 +23,10 @@ final class AppCoordinatorViewModel: ObservableObject {
 
     func goBackToRoot() {
         routes.goBackToRoot()
+    }
+    
+    func setTabBarAsRootScreen() {
+        routes = [.root(.tabContainer, embedInNavigationView: true)]
     }
 }
 
