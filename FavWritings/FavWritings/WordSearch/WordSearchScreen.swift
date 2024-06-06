@@ -157,7 +157,15 @@ struct WordSearchScreen: View {
                 )
             }
             .padding(8.0)
-            WebView(url: url, webView: webView)
+            WebView(
+                url: url,
+                webView: webView,
+                onFinishedLoading: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                        hideKeyboard()
+                    }
+                }
+            )
         }
         .ignoresSafeArea()
     }
@@ -179,6 +187,10 @@ struct WordSearchScreen: View {
     private func handleDoubleTap(for word: String) {
         viewModel.onSelectWord(word: word)
         isPresentWebView = true
+    }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
