@@ -73,11 +73,25 @@ struct WordSearchScreen: View {
                         if !copiedWord.isEmpty {
                             copyTextToast
                         }
-                        TextField("Set word count", text: $viewModel.maxWordCount)
-                            .padding(.horizontal, 8.0)
-                            .padding(.vertical, 6.0)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10.0)
+                        HStack {
+                            TextField("Set word count", text: $viewModel.maxWordCount)
+                                .padding(.horizontal, 8.0)
+                                .padding(.vertical, 6.0)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(10.0)
+                            DropDownPickerView(
+                                optionList: viewModel.lengthFilters,
+                                selectedOption: .init(
+                                    get: {
+                                        viewModel.selectedLengthType.rawValue
+                                    },
+                                    set: { newValue in
+                                        viewModel.updateLengthSelectionType(for: newValue)
+                                    }
+                                )
+                            )
+                            .accentColor(.purple)
+                        }
                         HStack {
                             prefixView
                             Spacer()

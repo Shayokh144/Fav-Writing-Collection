@@ -12,6 +12,7 @@ final class WordSearchViewModel: ObservableObject {
     
     @Published var searchText = ""
     @Published var maxWordCount: String = ""
+    @Published var selectedLengthType: LengthFilterType = .equal
     @Published private(set) var wordList: [String]
     @Published private(set) var suffixMatchWords: [String]
     @Published private(set) var prefixMatchWords: [String]
@@ -21,6 +22,10 @@ final class WordSearchViewModel: ObservableObject {
     private var suffixMatchWordList: [String]
     private var prefixMatchWordList: [String]
     private var cancellables = Set<AnyCancellable>()
+    
+    var lengthFilters: [String] {
+        LengthFilterType.allCases.map { $0.rawValue }
+    }
     
     var wordMeaningURL: URL? {
         URL(string: "https://www.google.com/search?q=\(selectedWord)+সমার্থক&oq=\(selectedWord)+সমার্থক")
@@ -34,21 +39,20 @@ final class WordSearchViewModel: ObservableObject {
         prefixMatchWordList = []
         state = .loaded
         $searchText
-            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .removeDuplicates()
             .sink { [weak self] text in
                 if !text.isEmpty {
                     self?.search(text: text)
+                    self?.filterResult()
                 }
             }
             .store(in: &cancellables)
         $maxWordCount
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
-            .sink { [weak self] wordCount in
-                guard let number = Int(wordCount), let self = self else {
-                    return
-                }
-                self.prefixMatchWords = self.prefixMatchWordList.filter { $0.count <= number }
-                self.suffixMatchWords = self.suffixMatchWordList.filter { $0.count <= number }
+            .removeDuplicates()
+            .sink { [weak self] _ in
+                self?.filterResult()
             }
             .store(in: &cancellables)
     }
@@ -57,6 +61,29 @@ final class WordSearchViewModel: ObservableObject {
         if wordList.isEmpty {
             loadWordList()
         }
+    }
+    
+    func updateLengthSelectionType(for newValue: String) {
+        selectedLengthType = LengthFilterType(rawValue: newValue)
+        filterResult()
+    }
+    
+    private func filterResult() {
+        guard let number = Int(maxWordCount) else {
+            return
+        }
+        let lengthComparisonClosure: (String) -> Bool = {
+            switch self.selectedLengthType {
+                case .equal:
+                    return $0.count == number
+                case .greaterThanOrEqual:
+                    return $0.count >= number
+                case .lessThanOrEqual:
+                    return $0.count <= number
+            }
+        }
+        self.prefixMatchWords = self.prefixMatchWordList.filter(lengthComparisonClosure)
+        self.suffixMatchWords = self.suffixMatchWordList.filter(lengthComparisonClosure)
     }
     
     private func search(text: String) {
@@ -117,6 +144,24 @@ extension WordSearchViewModel {
         case loading
         case loaded
         case error
+    }
+    
+    enum LengthFilterType: String, CaseIterable {
+        
+        case equal = "=  "
+        case greaterThanOrEqual = ">=  "
+        case lessThanOrEqual = "<=  "
+        
+        init(rawValue: String) {
+            switch rawValue {
+                case LengthFilterType.equal.rawValue:
+                    self = .equal
+                case LengthFilterType.greaterThanOrEqual.rawValue:
+                    self = .greaterThanOrEqual
+                default:
+                    self = .lessThanOrEqual
+            }
+        }
     }
 }
 
