@@ -13,6 +13,7 @@ struct WebView: UIViewRepresentable {
     class Coordinator: NSObject, WKNavigationDelegate {
         
         var parent: WebView
+        var urlDict: [String: Bool] = [:]
         
         init(_ parent: WebView) {
             self.parent = parent
@@ -21,11 +22,33 @@ struct WebView: UIViewRepresentable {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             parent.onFinishedLoading()
         }
+        
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            parent.onStartLoading()
+        }
+
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+            parent.onFinishedLoading()
+        }
+        
+        func webView(
+            _ webView: WKWebView,
+            decidePolicyFor navigationAction: WKNavigationAction,
+            decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+        ) {
+            if let urlValue = navigationAction.request.url?.absoluteString {
+                if urlDict[urlValue] == nil {
+                    urlDict[urlValue] = true
+                }
+            }
+            decisionHandler(.allow)
+        }
     }
     
-    let url: URL
+    @Binding var url: URL?
     let webView: WKWebView
     let onFinishedLoading: () -> Void
+    let onStartLoading: () -> Void
 
     func makeUIView(context: Context) -> WKWebView {
         webView.navigationDelegate = context.coordinator
@@ -37,19 +60,22 @@ struct WebView: UIViewRepresentable {
     }
     
     func updateUIView(_ webView: WKWebView, context: Context) {
-
-        let request = URLRequest(url: url)
-        webView.load(request)
+        if let url = url, context.coordinator.urlDict[url.absoluteString] == nil {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
     
     init(
-        url: URL,
+        url: Binding<URL?>,
         webView: WKWebView,
-        onFinishedLoading: @escaping () -> Void
+        onFinishedLoading: @escaping () -> Void,
+        onStartLoading: @escaping () -> Void
     ) {
-        self.url = url
+        _url = url
         self.webView = webView
         self.onFinishedLoading = onFinishedLoading
+        self.onStartLoading = onStartLoading
     }
 }
 

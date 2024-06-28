@@ -15,6 +15,7 @@ struct WordSearchScreen: View {
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var copiedWord: String = ""
     @State private var isPresentWebView = false
+    @State private var isLoadingWebView = false
     
     private var suffixView: some View {
         ScrollView(showsIndicators: false) {
@@ -158,7 +159,20 @@ struct WordSearchScreen: View {
                     }
                 )
                 Spacer()
-                Text("Word Meaning")
+                Button(
+                    action: {
+                        viewModel.updateWebUrl()
+                    },
+                    label: {
+                        if isLoadingWebView {
+                            ProgressView()
+                        } else {
+                            Text("Change Search type")
+                                .padding(4.0)
+                        }
+                    }
+                )
+                
                 Spacer()
                 Button(
                     action: {
@@ -172,12 +186,14 @@ struct WordSearchScreen: View {
             }
             .padding(8.0)
             WebView(
-                url: url,
+                url: $viewModel.wordMeaningURL,
                 webView: webView,
                 onFinishedLoading: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-                        hideKeyboard()
-                    }
+                    isLoadingWebView = false
+                    hideKeyboard()
+                },
+                onStartLoading: {
+                    isLoadingWebView = true
                 }
             )
         }

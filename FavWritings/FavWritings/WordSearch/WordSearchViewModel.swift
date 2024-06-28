@@ -18,17 +18,14 @@ final class WordSearchViewModel: ObservableObject {
     @Published private(set) var prefixMatchWords: [String]
     @Published private(set) var state: State
     @Published private(set) var selectedWord: String = ""
-    
+    @Published var wordMeaningURL: URL?
     private var suffixMatchWordList: [String]
     private var prefixMatchWordList: [String]
     private var cancellables = Set<AnyCancellable>()
+    private var isGoogleSearch = true
     
     var lengthFilters: [String] {
         LengthFilterType.allCases.map { $0.rawValue }
-    }
-    
-    var wordMeaningURL: URL? {
-        URL(string: "https://www.google.com/search?q=\(selectedWord)+সমার্থক&oq=\(selectedWord)+সমার্থক")
     }
     
     init() {
@@ -116,6 +113,16 @@ final class WordSearchViewModel: ObservableObject {
     
     func onSelectWord(word: String) {
         selectedWord = word
+        wordMeaningURL = URL(string: "https://www.google.com/search?q=\(selectedWord)+সমার্থক&oq=\(selectedWord)+সমার্থক")
+    }
+    
+    func updateWebUrl() {
+        isGoogleSearch.toggle()
+        if isGoogleSearch {
+            wordMeaningURL = URL(string: "https://www.google.com/search?q=\(selectedWord)+সমার্থক&oq=\(selectedWord)+সমার্থক")
+        } else {
+            wordMeaningURL = URL(string: "https://accessibledictionary.gov.bd/bengali-to-bengali.php?q=\(selectedWord)")
+        }
     }
     
     private func loadWordList() {
