@@ -9,10 +9,11 @@ import Foundation
 
 enum Screen {
 
+    case addNewItem(AddNewItemViewModel)
+    case splash
     case tabContainer
     case writingsList(WritingsListViewModel)
     case writingsDetails(WritingDetailsUIModel)
     case wordSearch(WordSearchViewModel)
-    case splash
 }
 

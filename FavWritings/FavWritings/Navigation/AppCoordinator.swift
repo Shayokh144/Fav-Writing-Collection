@@ -15,6 +15,8 @@ struct AppCoordinator: View {
     var body: some View {
         Router($coordinator.routes) { screen, _  in
             switch screen {
+                case let .addNewItem(viewModel):
+                    AddNewItemScreen(viewModel: viewModel)
                 case .tabContainer:
                     TabContainerScreen(
                         onTapWritingName: { uiModel in
