@@ -42,6 +42,21 @@ struct AddNewItemScreen: View {
         .tint(.blue)
     }
     
+    private var useImageButton: some View {
+        Button(
+            action : {
+                // TODO
+            },
+            label: {
+                Label("Use this image", systemImage: "paperplane.circle.fill")
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+            }
+        )
+        .buttonStyle(.borderedProminent)
+        .tint(.green)
+    }
+    
     private var selectedImage: UIImage? {
         if selectedCameraImage != nil {
             return selectedCameraImage
@@ -57,6 +72,7 @@ struct AddNewItemScreen: View {
                     .scaledToFit()
                     .frame(width: 300, height: 400)
                 rotateImageButton
+                useImageButton
             }
         }
     }
@@ -154,31 +170,5 @@ struct AddNewItemScreen: View {
         default:
             break
         }
-    }
-}
-
-
-import UIKit
-
-extension UIImage {
-    
-    func rotate(radians: CGFloat) -> UIImage? {
-        var newSize = CGRect(origin: CGPoint.zero, size: size)
-            .applying(CGAffineTransform(rotationAngle: radians))
-            .integral.size
-        newSize.width = floor(newSize.width)
-        newSize.height = floor(newSize.height)
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        
-        context.translateBy(x: newSize.width / 2, y: newSize.height / 2)
-        context.rotate(by: radians)
-        draw(in: CGRect(x: -size.width / 2, y: -size.height / 2, width: size.width, height: size.height))
-        
-        let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return rotatedImage
     }
 }
