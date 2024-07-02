@@ -35,6 +35,7 @@ struct AddNewItemScreen: View {
             label: {
                 Label("Rotate Image", systemImage: "rotate.right")
                     .foregroundColor(.black)
+                    .frame(maxWidth: .infinity)
             }
         )
         .buttonStyle(.borderedProminent)
@@ -49,9 +50,9 @@ struct AddNewItemScreen: View {
     }
     
     @ViewBuilder private var imageView: some View {
-        if let selectedImage = selectedCameraImage {
+        if let image = selectedImage {
             VStack {
-                Image(uiImage: selectedImage)
+                Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 300, height: 400)
@@ -60,50 +61,50 @@ struct AddNewItemScreen: View {
         }
     }
     
+    private var openCameraButton: some View {
+        Button(
+            action : {
+                shouldShowLoading = true
+                selectedGalleryImage = nil
+                checkCameraPermissions()
+            },
+            label: {
+                Label("Open Camera To Take Photo", systemImage: "camera")
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity)
+            }
+        )
+        .disabled(shouldShowLoading)
+        .buttonStyle(.borderedProminent)
+        .tint(selectedCameraImage == nil ? .blue : .green)
+    }
+    
+    private var openGalleryButton: some View {
+        PhotosPicker(selection: $galleryImageItem, matching: .images) {
+            Label("Select Photo From Gallery", systemImage: "photo")
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity)
+        }
+        .disabled(shouldShowLoading)
+        .buttonStyle(.borderedProminent)
+        .tint(selectedGalleryImage == nil ? .blue : .green)
+    }
+    
     var body: some View {
         VStack {
-            Button(
-                action : {
-                    shouldShowLoading = true
-                    selectedGalleryImage = nil
-                    checkCameraPermissions()
-                },
-                label: {
-                    Label("Open Camera To Take Photo", systemImage: "camera")
-                        .foregroundColor(.black)
-                }
-            )
-            .buttonStyle(.borderedProminent)
-            .tint(selectedCameraImage == nil ? .blue : .green)
-            
-            PhotosPicker(selection: $galleryImageItem, matching: .images) {
-                Label("Select Photo From Gallery", systemImage: "photo")
-                    .foregroundColor(.black)
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(selectedGalleryImage == nil ? .blue : .green)
-            
-            if let selectedGalleryImage {
-                Image(uiImage: selectedGalleryImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 400)
-                rotateImageButton
-            }
-            if let selectedCameraImage {
-                Image(uiImage: selectedCameraImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 400)
-                rotateImageButton
-            }
-            if selectedGalleryImage == nil && selectedCameraImage == nil && shouldShowLoading {
+            openCameraButton
+            openGalleryButton
+            imageView
+            if selectedImage == nil && shouldShowLoading {
                 Spacer()
                 ProgressView()
             }
             Spacer()
         }
         .padding()
+        .onChange(of: shouldShowCamera) { isCameraShowing in
+            shouldShowLoading = isCameraShowing
+        }
         .onChange(of: galleryImageItem) { item in
             Task {
                 shouldShowLoading = true
