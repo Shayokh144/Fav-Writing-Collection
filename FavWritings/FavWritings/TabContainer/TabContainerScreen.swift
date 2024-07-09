@@ -14,6 +14,7 @@ struct TabContainerScreen: View {
     @StateObject private var addNewItemViewModel: AddNewItemViewModel
     
     private let onTapWritingName: (WritingDetailsUIModel) -> Void
+    private let onTapAddImage: () -> Void
     
     var body: some View {
         TabView {
@@ -31,7 +32,8 @@ struct TabContainerScreen: View {
                 Label("Word Search", systemImage: "doc.text.magnifyingglass")
             }
             AddNewItemScreen(
-                viewModel: addNewItemViewModel
+                viewModel: addNewItemViewModel, 
+                onTapAddImage: onTapAddImage
             )
             .tabItem {
                 Label("Add new", systemImage: "note.text.badge.plus")
@@ -39,10 +41,17 @@ struct TabContainerScreen: View {
         }
     }
     
-    init(onTapWritingName: @escaping (WritingDetailsUIModel) -> Void) {
-        _writingListViewModel = StateObject(wrappedValue: WritingsListViewModel())
-        _wordSearchViewModel = StateObject(wrappedValue: WordSearchViewModel())
-        _addNewItemViewModel = StateObject(wrappedValue: AddNewItemViewModel())
+    init(
+        writingListViewModel: WritingsListViewModel,
+        wordSearchViewModel: WordSearchViewModel,
+        addNewItemViewModel: AddNewItemViewModel,
+        onTapWritingName: @escaping (WritingDetailsUIModel) -> Void,
+        onTapAddImage: @escaping () -> Void
+    ) {
+        _writingListViewModel = StateObject(wrappedValue: writingListViewModel)
+        _wordSearchViewModel = StateObject(wrappedValue: wordSearchViewModel)
+        _addNewItemViewModel = StateObject(wrappedValue: addNewItemViewModel)
         self.onTapWritingName = onTapWritingName
+        self.onTapAddImage = onTapAddImage
     }
 }

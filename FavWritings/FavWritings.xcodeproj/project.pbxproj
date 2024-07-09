@@ -14,6 +14,8 @@
 		0406753E2BEB801C009C865A /* WritingDetailsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0406753D2BEB801C009C865A /* WritingDetailsUIModel.swift */; };
 		04253DA22BF327CD00F132BB /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04253DA12BF327CD00F132BB /* SplashScreen.swift */; };
 		0430453A2C3D74D7007AC43F /* WritingDetailsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043045392C3D74D7007AC43F /* WritingDetailsDataModel.swift */; };
+		0430453F2C3DA48E007AC43F /* AddImageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0430453E2C3DA48E007AC43F /* AddImageScreen.swift */; };
+		043045412C3DA4CB007AC43F /* AddImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043045402C3DA4CB007AC43F /* AddImageViewModel.swift */; };
 		0431444C2C342F990074FD29 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431444B2C342F990074FD29 /* UIImage+Extension.swift */; };
 		04738BF72C32EB450085F94B /* AddNewItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738BF62C32EB450085F94B /* AddNewItemScreen.swift */; };
 		04738BF92C32EB770085F94B /* AddNewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04738BF82C32EB770085F94B /* AddNewItemViewModel.swift */; };
@@ -43,6 +45,8 @@
 		0406753D2BEB801C009C865A /* WritingDetailsUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingDetailsUIModel.swift; sourceTree = "<group>"; };
 		04253DA12BF327CD00F132BB /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		043045392C3D74D7007AC43F /* WritingDetailsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingDetailsDataModel.swift; sourceTree = "<group>"; };
+		0430453E2C3DA48E007AC43F /* AddImageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageScreen.swift; sourceTree = "<group>"; };
+		043045402C3DA4CB007AC43F /* AddImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewModel.swift; sourceTree = "<group>"; };
 		0431444B2C342F990074FD29 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		04738BF62C32EB450085F94B /* AddNewItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemScreen.swift; sourceTree = "<group>"; };
 		04738BF82C32EB770085F94B /* AddNewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemViewModel.swift; sourceTree = "<group>"; };
@@ -114,6 +118,15 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		0430453B2C3D799F007AC43F /* AddImage */ = {
+			isa = PBXGroup;
+			children = (
+				0430453E2C3DA48E007AC43F /* AddImageScreen.swift */,
+				043045402C3DA4CB007AC43F /* AddImageViewModel.swift */,
+			);
+			path = AddImage;
+			sourceTree = "<group>";
+		};
 		0431444A2C342F860074FD29 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +138,7 @@
 		04738BF52C32EB220085F94B /* AddNewItem */ = {
 			isa = PBXGroup;
 			children = (
+				0430453B2C3D799F007AC43F /* AddImage */,
 				04738BF62C32EB450085F94B /* AddNewItemScreen.swift */,
 				04738BF82C32EB770085F94B /* AddNewItemViewModel.swift */,
 			);
@@ -336,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043045412C3DA4CB007AC43F /* AddImageViewModel.swift in Sources */,
 				04253DA22BF327CD00F132BB /* SplashScreen.swift in Sources */,
 				04A2C7D52BF2484C003525F7 /* AppCoordinator.swift in Sources */,
 				04A2C7CF2BF24710003525F7 /* AppCoordinatorViewModel.swift in Sources */,
@@ -347,6 +362,7 @@
 				0431444C2C342F990074FD29 /* UIImage+Extension.swift in Sources */,
 				04738BFC2C3319EA0085F94B /* ImagePicker.swift in Sources */,
 				0499E2522BEA77EC00464450 /* WritingDetailsScreen.swift in Sources */,
+				0430453F2C3DA48E007AC43F /* AddImageScreen.swift in Sources */,
 				0406753E2BEB801C009C865A /* WritingDetailsUIModel.swift in Sources */,
 				0474D5962C118A9B007940DF /* DropDownPickerView.swift in Sources */,
 				04738BF72C32EB450085F94B /* AddNewItemScreen.swift in Sources */,

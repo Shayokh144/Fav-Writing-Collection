@@ -11,16 +11,37 @@ import SwiftUI
 struct AppCoordinator: View {
     
     @StateObject var coordinator: AppCoordinatorViewModel
+    @StateObject private var writingListViewModel: WritingsListViewModel
+    @StateObject private var wordSearchViewModel: WordSearchViewModel
+    @StateObject private var addNewItemViewModel: AddNewItemViewModel
 
     var body: some View {
         Router($coordinator.routes) { screen, _  in
             switch screen {
-                case let .addNewItem(viewModel):
-                    AddNewItemScreen(viewModel: viewModel)
+                case let .addImage(viewModel, onSelectImage):
+                    AddImageScreen(
+                        viewModel: viewModel, 
+                        onTapUseImage: onSelectImage
+                    )
                 case .tabContainer:
                     TabContainerScreen(
+                        writingListViewModel: writingListViewModel,
+                        wordSearchViewModel: wordSearchViewModel,
+                        addNewItemViewModel: addNewItemViewModel,
                         onTapWritingName: { uiModel in
                             coordinator.routes.push(.writingsDetails(uiModel))
+                        }, 
+                        onTapAddImage: {
+                            let imageViewModel = AddImageViewModel()
+                            coordinator.routes.push(
+                                .addImage(
+                                    imageViewModel,
+                                    onSelectImage: { image in
+                                        addNewItemViewModel.selectedImage = image
+                                        coordinator.goBack()
+                                    }
+                                )
+                            )
                         }
                     )
                 case let .writingsList(viewModel):
@@ -42,5 +63,8 @@ struct AppCoordinator: View {
     
     init(coordinator: AppCoordinatorViewModel) {
         _coordinator = StateObject(wrappedValue: coordinator)
+        _writingListViewModel = StateObject(wrappedValue: WritingsListViewModel())
+        _wordSearchViewModel = StateObject(wrappedValue: WordSearchViewModel())
+        _addNewItemViewModel = StateObject(wrappedValue: AddNewItemViewModel())
     }
 }

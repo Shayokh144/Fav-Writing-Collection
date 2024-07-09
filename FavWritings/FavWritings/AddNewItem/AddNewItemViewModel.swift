@@ -6,7 +6,9 @@
 //
 
 import Combine
+import UIKit
 
 final class AddNewItemViewModel: ObservableObject {
     
+    @Published var selectedImage: UIImage?
 }
