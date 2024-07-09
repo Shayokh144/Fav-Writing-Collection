@@ -118,13 +118,13 @@ struct AddNewItemScreen: View {
             Spacer()
         }
         .padding()
-        .onChange(of: shouldShowCamera) { isCameraShowing in
-            shouldShowLoading = isCameraShowing
+        .onChange(of: shouldShowCamera) {
+            shouldShowLoading = shouldShowCamera
         }
-        .onChange(of: galleryImageItem) { item in
+        .onChange(of: galleryImageItem) {
             Task {
                 shouldShowLoading = true
-                if let loaded = try? await item?.loadTransferable(type: Data.self) {
+                if let loaded = try? await galleryImageItem?.loadTransferable(type: Data.self) {
                     selectedGalleryImage = UIImage(data: loaded)
                     selectedCameraImage = nil
                 } else {
